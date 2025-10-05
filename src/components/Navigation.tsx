@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Cpu } from './Icons';
+import { Cpu, Play, X } from './Icons';
 
 const Navigation: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCoursesOpen, setIsCoursesOpen] = useState(false);
+  const [isTrialModalOpen, setIsTrialModalOpen] = useState(false);
   const location = useLocation();
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -31,16 +32,29 @@ const Navigation: React.FC = () => {
   const isActivePath = (path: string) => location.pathname === path;
 
   return (
+    <>
     <nav className="fixed top-0 left-0 right-0 z-50 nav-glass">
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <Link to="/" className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-accent-500 rounded-lg flex items-center justify-center">
-              <Cpu className="w-6 h-6 text-white" />
-            </div>
-                          <span className="text-base-50 font-bold text-lg">招投标教学</span>
-          </Link>
+          {/* Trial Button and Logo */}
+          <div className="flex items-center space-x-4">
+            {/* Trial Experience Button */}
+            <button
+              onClick={() => setIsTrialModalOpen(true)}
+              className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white rounded-xl font-medium text-sm transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-purple-500/30"
+            >
+              <Play className="w-4 h-4" />
+              <span>直播回放</span>
+            </button>
+
+            {/* Logo */}
+            <Link to="/" className="flex items-center space-x-3">
+              <div className="w-10 h-10 bg-accent-500 rounded-lg flex items-center justify-center">
+                <Cpu className="w-6 h-6 text-white" />
+              </div>
+              <span className="text-base-50 font-bold text-lg">招投标教学</span>
+            </Link>
+          </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
@@ -151,6 +165,64 @@ const Navigation: React.FC = () => {
         )}
       </div>
     </nav>
+
+    {/* Trial Video Modal */}
+    {isTrialModalOpen && (
+      <div className="fixed inset-0 z-[2000] flex items-center justify-center p-4">
+        {/* Backdrop */}
+        <div
+          className="absolute inset-0 bg-black/80 backdrop-blur-sm"
+          onClick={() => setIsTrialModalOpen(false)}
+        />
+
+        {/* Modal Content */}
+        <div className="relative w-full max-w-5xl bg-gradient-to-br from-gray-900 to-black rounded-2xl shadow-2xl border border-purple-500/30 overflow-hidden">
+          {/* Header */}
+          <div className="flex items-center justify-between p-6 border-b border-purple-500/20">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
+                <Play className="w-6 h-6 text-white" />
+              </div>
+              <h2 className="text-2xl font-bold text-white">直播回放</h2>
+            </div>
+            <button
+              onClick={() => setIsTrialModalOpen(false)}
+              className="w-10 h-10 rounded-lg bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors"
+            >
+              <X className="w-5 h-5 text-white" />
+            </button>
+          </div>
+
+          {/* Video Container */}
+          <div className="relative bg-black" style={{ paddingBottom: '56.25%' }}>
+            <video
+              className="absolute inset-0 w-full h-full"
+              controls
+              autoPlay
+              src="https://ddcz-1315997005.cos.ap-nanjing.myqcloud.com/static/video/web_teach/recuYJ7kgzytbi.mov"
+            >
+              您的浏览器不支持视频播放
+            </video>
+          </div>
+
+          {/* Footer */}
+          <div className="p-6 bg-gradient-to-r from-purple-900/20 to-pink-900/20 border-t border-purple-500/20">
+            <div className="flex items-center justify-between">
+              <p className="text-white/80">
+                查看招投标全流程解析课程的直播回放内容
+              </p>
+              <button
+                onClick={() => setIsTrialModalOpen(false)}
+                className="px-6 py-2 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white rounded-lg font-medium transition-all hover:scale-105"
+              >
+                关闭
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    )}
+    </>
   );
 };
 

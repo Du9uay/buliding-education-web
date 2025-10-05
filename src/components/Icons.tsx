@@ -98,6 +98,12 @@ export const Menu: React.FC<IconProps> = ({ className = '', size = 24 }) => (
   </svg>
 );
 
+export const Play: React.FC<IconProps> = ({ className = '', size = 24 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <polygon points="5 3 19 12 5 21 5 3" />
+  </svg>
+);
+
 export const X: React.FC<IconProps> = ({ className = '', size = 24 }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
     <line x1="18" y1="6" x2="6" y2="18"/>
