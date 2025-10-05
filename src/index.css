@@ -1,0 +1,421 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+}
+
+/* 招投标行业专业色彩系统变量 */
+:root {
+  /* 主色调 - 深蓝系（专业权威） */
+  --bg-primary-900: #0F1419;     /* 最深背景 */
+  --bg-primary-800: #1A252F;     /* 深背景 */
+  --bg-primary-700: #2C3E50;     /* 次级背景/卡片底色 */
+  
+  /* 文本色彩 */
+  --text-primary: #E8EBF0;       /* 主文本色 */
+  --text-secondary: #D1D9E6;     /* 次级文本 */
+  --text-muted: #A3B3CC;        /* 弱化文本 */
+  
+  /* 强调色 - 金橙系（成功价值） */
+  --accent-primary: #D97706;     /* 主强调色 */
+  --accent-light: #F59E0B;       /* 浅强调色 */
+  --accent-dark: #B45309;        /* 深强调色 */
+  
+  /* 功能色彩 */
+  --color-success: #059669;      /* 成功/中标 */
+  --color-warning: #D97706;      /* 警告/注意 */
+  --color-danger: #DC2626;       /* 风险/失败 */
+  --color-info: #0284C7;         /* 信息提示 */
+  
+  /* 透明度变体 */
+  --accent-primary-16: rgba(217, 119, 6, 0.16);
+  --accent-primary-08: rgba(217, 119, 6, 0.08);
+  --accent-primary-05: rgba(217, 119, 6, 0.05);
+  --primary-blue-10: rgba(30, 58, 138, 0.10);
+  --primary-blue-05: rgba(30, 58, 138, 0.05);
+  
+  /* 边框和分割线 */
+  --border-primary: rgba(232, 235, 240, 0.15);
+  --border-accent: rgba(217, 119, 6, 0.25);
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* 招投标专业背景渐变 */
+  background: 
+    /* 金色辐射高光 - 右上角 */
+    radial-gradient(1400px 700px at 75% -5%, var(--accent-primary-08), transparent 65%),
+    /* 蓝色辐射高光 - 左下角 */
+    radial-gradient(800px 600px at 25% 105%, var(--primary-blue-05), transparent 60%),
+    /* 主背景渐变 - 深蓝灰系 */
+    linear-gradient(135deg, 
+      var(--bg-primary-900) 0%, 
+      var(--bg-primary-800) 35%, 
+      var(--bg-primary-700) 100%);
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* 招投标专业按钮样式 */
+.btn-primary {
+  background: var(--accent-primary);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(217, 119, 6, 0.2);
+}
+.btn-primary:hover {
+  background: var(--accent-light);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(217, 119, 6, 0.3);
+}
+.btn-primary:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 12px rgba(217, 119, 6, 0.25);
+}
+
+/* 次级按钮 */
+.btn-secondary {
+  background: transparent;
+  color: var(--accent-primary);
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 2px solid var(--accent-primary);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn-secondary:hover {
+  background: var(--accent-primary-08);
+  border-color: var(--accent-light);
+  color: var(--accent-light);
+}
+
+/* 专业卡片样式 - 招投标风格 */
+.card-base {
+  background: rgba(44, 62, 80, 0.25);
+  backdrop-filter: blur(20px) saturate(150%);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
+  border-radius: 16px;
+  border: 1px solid var(--border-primary);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15), 
+              0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+.card-base:hover {
+  transform: translateY(-4px);
+  background: rgba(44, 62, 80, 0.35);
+  border-color: var(--border-accent);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2), 
+              0 0 0 1px rgba(217, 119, 6, 0.1) inset;
+}
+
+/* 专业玻璃效果 */
+.glass-effect {
+  background: rgba(26, 37, 47, 0.15);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border-radius: 16px;
+  border: 1px solid var(--border-primary);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12),
+              0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+}
+
+/* 深度玻璃效果 - 重要组件 */
+.glass-deep {
+  background: rgba(15, 20, 25, 0.30);
+  backdrop-filter: blur(40px) saturate(200%) brightness(1.1);
+  -webkit-backdrop-filter: blur(40px) saturate(200%) brightness(1.1);
+  border-radius: 20px;
+  border: 1px solid var(--border-accent);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25),
+              0 0 0 1px rgba(217, 119, 6, 0.1) inset;
+}
+
+/* 轻量玻璃效果 */
+.glass-light {
+  background: rgba(232, 235, 240, 0.03);
+  backdrop-filter: blur(12px) saturate(150%);
+  -webkit-backdrop-filter: blur(12px) saturate(150%);
+  border-radius: 12px;
+  border: 1px solid rgba(232, 235, 240, 0.08);
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
+}
+
+/* 移除所有焦点轮廓 */
+button:focus,
+button:focus-visible,
+.btn-primary:focus,
+.btn-primary:focus-visible,
+.btn-secondary:focus,
+.btn-secondary:focus-visible,
+.btn-glass:focus,
+.btn-glass:focus-visible {
+  outline: none !important;
+  border: none !important;
+}
+
+nav button,
+nav a {
+  border: none !important;
+  outline: none !important;
+}
+
+*:focus,
+*:focus-visible,
+*:focus-within {
+  outline: none !important;
+}
+
+/* 保留兼容性 - 使用新色彩 */
+.glass-card {
+  background: rgba(44, 62, 80, 0.25);
+  backdrop-filter: blur(20px) saturate(150%);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
+  border-radius: 16px;
+  border: 1px solid var(--border-primary);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15), 
+              0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 招投标主题文字渐变 */
+.text-gradient {
+  background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-light) 50%, var(--text-primary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* 专业标题渐变 */
+.title-gradient {
+  background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-light) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* 滚动条样式 */
+.hide-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* 专业玻璃按钮 */
+.btn-glass {
+  background: rgba(217, 119, 6, 0.12);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  color: var(--text-primary);
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-weight: 500;
+  border: 1px solid var(--border-accent);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1),
+              0 0 0 1px rgba(217, 119, 6, 0.08) inset;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn-glass:hover {
+  background: rgba(217, 119, 6, 0.20);
+  transform: translateY(-2px);
+  border-color: var(--accent-primary);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15),
+              0 0 0 1px rgba(217, 119, 6, 0.15) inset;
+}
+
+/* 专业输入框 */
+.input-glass {
+  background: rgba(26, 37, 47, 0.25);
+  backdrop-filter: blur(16px) saturate(150%);
+  -webkit-backdrop-filter: blur(16px) saturate(150%);
+  border-radius: 12px;
+  padding: 14px 16px;
+  color: var(--text-primary);
+  border: 1px solid var(--border-primary);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.03) inset;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.input-glass:focus {
+  background: rgba(26, 37, 47, 0.35);
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 2px rgba(217, 119, 6, 0.2),
+              0 0 0 1px rgba(217, 119, 6, 0.1) inset;
+  outline: none;
+}
+.input-glass::placeholder {
+  color: var(--text-muted);
+}
+
+/* 专业导航栏 */
+.nav-glass {
+  background: rgba(15, 20, 25, 0.85);
+  backdrop-filter: blur(24px) saturate(180%) brightness(1.1);
+  -webkit-backdrop-filter: blur(24px) saturate(180%) brightness(1.1);
+  border-bottom: 1px solid var(--border-primary);
+  box-shadow: 0 1px 0 0 rgba(217, 119, 6, 0.05) inset;
+}
+
+/* 状态指示器 */
+.status-success {
+  color: var(--color-success);
+  background: rgba(5, 150, 105, 0.1);
+  border: 1px solid rgba(5, 150, 105, 0.2);
+}
+
+.status-warning {
+  color: var(--color-warning);
+  background: rgba(217, 119, 6, 0.1);
+  border: 1px solid rgba(217, 119, 6, 0.2);
+}
+
+.status-danger {
+  color: var(--color-danger);
+  background: rgba(220, 38, 38, 0.1);
+  border: 1px solid rgba(220, 38, 38, 0.2);
+}
+
+.status-info {
+  color: var(--color-info);
+  background: rgba(2, 132, 199, 0.1);
+  border: 1px solid rgba(2, 132, 199, 0.2);
+}
+
+/* 专业标签样式 */
+.tag-professional {
+  background: var(--primary-blue-10);
+  color: #3B82F6;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.tag-accent {
+  background: var(--accent-primary-16);
+  color: var(--accent-primary);
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  border: 1px solid var(--accent-primary);
+}
+
+/* 响应式设计优化 */
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+  
+  /* 移动端性能优化 - 降低模糊度 */
+  .card-base, .glass-effect, .glass-card {
+    backdrop-filter: blur(12px) saturate(150%);
+    -webkit-backdrop-filter: blur(12px) saturate(150%);
+  }
+  
+  .glass-deep {
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+  }
+}
+
+/* 性能优化 */
+.gpu-accelerated {
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* 减少动画复杂度 */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    animation-delay: 0.01ms !important;
+  }
+}
+
+/* 招投标专业进度条 */
+.progress-professional {
+  background: rgba(26, 37, 47, 0.5);
+  border-radius: 8px;
+  overflow: hidden;
+  height: 8px;
+}
+
+.progress-fill {
+  background: linear-gradient(90deg, var(--accent-primary), var(--accent-light));
+  height: 100%;
+  border-radius: 8px;
+  transition: width 0.5s ease;
+  box-shadow: 0 0 10px rgba(217, 119, 6, 0.3);
+}
+
+/* 专业卡片悬浮发光效果 */
+.card-glow:hover {
+  box-shadow: 0 0 30px rgba(217, 119, 6, 0.2), 
+              0 8px 32px rgba(0, 0, 0, 0.15),
+              0 0 0 1px rgba(217, 119, 6, 0.1) inset;
+}
+
+/* 专业分割线 */
+.divider-professional {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-accent), transparent);
+  margin: 2rem 0;
+}
+
+/* 特殊效果 - 金色发光边框 */
+.border-glow {
+  border: 1px solid var(--accent-primary);
+  box-shadow: 0 0 10px rgba(217, 119, 6, 0.3),
+              0 0 0 1px rgba(217, 119, 6, 0.1) inset;
+}
+
+/* 专业徽章样式 */
+.badge-professional {
+  background: var(--accent-primary);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 8px rgba(217, 119, 6, 0.3);
+}
