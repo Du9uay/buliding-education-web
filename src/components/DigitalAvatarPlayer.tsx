@@ -229,12 +229,14 @@ const DigitalAvatarPlayer: React.FC<DigitalAvatarPlayerProps> = ({
                         muted={false}
                         style={{
                           background: 'transparent',
-                          borderRadius: '50%', // 确保视频也是圆形
-                          width: '120%',  // 适度放大视频内容
-                          height: '120%', // 适度放大视频内容
+                          borderRadius: '0%', // 确保视频也是圆形
+                          width: '110%',  // 适度放大视频内容
+                          height: '110%', // 适度放大视频内容
                           left: '50%',
-                          top: '50%',
+                          top: '45%',
                           transform: 'translate(-50%, -50%)', // 居中对齐
+                          maxWidth: 'none', // 移除最大宽度限制
+                          maxHeight: 'none', // 移除最大高度限制
                         }}
                       >
                         <source src={videoUrl} type="video/mp4" />
